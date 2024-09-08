@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'assets/category/**'
+  workflow_dispatch:
 
 jobs:
   update-image-lists:
