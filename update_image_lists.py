@@ -6,7 +6,7 @@ from github import Github
 # GitHub repository details
 REPO_OWNER = "StudyPlusApp"
 REPO_NAME = "Pixel-Paradise"
-GITHUB_TOKEN = "your_github_personal_access_token"
+GITHUB_TOKEN = os.environ['TOKEN']
 
 # Categories and their corresponding directories
 CATEGORIES = {
