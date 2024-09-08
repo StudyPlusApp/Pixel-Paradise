@@ -20,7 +20,7 @@ jobs:
         pip install PyGithub requests
     - name: Run update script
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
       run: python update_image_lists.py
     - name: Commit changes
       run: |
