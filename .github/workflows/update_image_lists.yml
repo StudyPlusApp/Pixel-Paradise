@@ -1,0 +1,31 @@
+name: Update Image Lists
+
+on:
+  push:
+    paths:
+      - 'assets/category/**'
+
+jobs:
+  update-image-lists:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install PyGithub requests
+    - name: Run update script
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: python update_image_lists.py
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add assets/category/*_images.json
+        git commit -m "Update image lists" || echo "No changes to commit"
+        git push
